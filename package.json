@@ -1,0 +1,21 @@
+{
+  "name": "jetlog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^1.30.0",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoload": "^0.1.0",
+    "mongoose": "^5.1.5",
+    "uuid-token-generator": "^1.0.0"
+  }
+}
