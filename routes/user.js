@@ -7,6 +7,10 @@ router.post('/pushPackets',(req,res)=>{
  controller.pushPackets(req, res)
 
 })
+router.post('/getConfig',(req,res)=>{
+ controller.getConfig(req, res)
+
+})
 
 
 

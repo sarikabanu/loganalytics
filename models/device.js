@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var Device = mongoose.Schema({
-    deviceId: {
+    did: {
         type: String
     },
     width: {
@@ -10,10 +10,10 @@ var Device = mongoose.Schema({
     height: {
         type: Number
     },
-    userId: {
+    uid: {
         type: String
     },
-    platform: {
+    pf: {
         type: String
     },
     osVersion: {
@@ -38,6 +38,7 @@ var Device = mongoose.Schema({
     }
 });
 
+module.exports = mongoose.model('Device', Device);
 // deviceId
 // width
 // height

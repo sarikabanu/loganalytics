@@ -11,6 +11,8 @@ var jwt = require('./utils/jwt')
 const login = require('./routes/login.js')
 const user = require('./routes/user.js')
 const project = require('./routes/projects.js')
+const configr = require('./routes/configr.js')
+const device = require('./routes/device.js')
 
 mongoose.connect(config.database.uri);
 
@@ -55,6 +57,8 @@ app.use('/login',login)
 app.use('/user',user)
 jwt.validate(app);
 app.use('/project',project)
+app.use('/configr',configr)
+app.use('/device',device)
 
 
 
