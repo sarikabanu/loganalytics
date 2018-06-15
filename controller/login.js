@@ -23,8 +23,8 @@ function userServices() {
                         email: req.body.email,
                         address: req.body.address,
                         password: req.body.password,
-                        email: req.body.email,
-                        token: jwtToken
+                        token: jwtToken,
+                         uidentity:'',
                     }
                     const user = new User(item);
                     user.save()

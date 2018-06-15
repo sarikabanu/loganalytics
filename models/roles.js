@@ -22,3 +22,5 @@ var Role = mongoose.Schema({
         default: Date.now
     }
 });
+
+module.exports = mongoose.model('Role', Role);

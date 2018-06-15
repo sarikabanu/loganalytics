@@ -22,6 +22,9 @@ var User = mongoose.Schema({
     token: {
         type: String
     },
+    uidentity: {
+        type: String
+    },
     createdBy: {
         type: String
     },

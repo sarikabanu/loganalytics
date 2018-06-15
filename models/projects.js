@@ -7,9 +7,16 @@ var Project = mongoose.Schema({
     projectToken: {
         type: String
     },
-    subscriptionId: {
-         type: mongoose.Schema.Types.ObjectId,
-          ref: 'Subscription' 
+    subscid: {
+        //  type: mongoose.Schema.Types.ObjectId,
+        //   ref: 'Subscription' 
+        type: String
+    },
+    pid:{
+        type: String
+    },
+    uid:{
+        type: String
     },
     createdBy: {
         type: String

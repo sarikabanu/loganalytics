@@ -16,3 +16,4 @@ this.addDevice = function (req, res) {
             res.status(401).json({ message: 'error', content:err })
         })
 }
+

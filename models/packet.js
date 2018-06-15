@@ -15,7 +15,7 @@ var Packet = mongoose.Schema({
     },
     //packet time
     pt: {
-        type: Number,
+        type: String,
         
     },
     events: [mongoose.Schema.Types.Mixed],
