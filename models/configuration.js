@@ -8,7 +8,6 @@ var Configr = mongoose.Schema({
     //platform
     pf: {
         type: String,
-      enum: ['android','ios'],
       //default:
     },
     canCapture:{

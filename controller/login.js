@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
-const User = require('../models/user.js')
 const jwt = require('../utils/jwt')
+const User = require('../models/user.js')
+const Project = require('../models/projects.js')
+
+
 
 
 function userServices() {
@@ -24,7 +27,7 @@ function userServices() {
                         address: req.body.address,
                         password: req.body.password,
                         token: jwtToken,
-                         uidentity:'',
+                        uidentity: '',
                     }
                     const user = new User(item);
                     user.save()
@@ -46,21 +49,32 @@ function userServices() {
 
         User.find({ password: req.body.password, email: req.body.email })
             .exec()
-            .then(result3 => {
-
-                if (result3.length != 0) {
-                    res.status(200).json({ message: 'logged in successfully', content: result3[0].token })
+            .then(result => {
+                if (result.length != 0) {
+                    var resData={
+                        id:result[0]._id,
+                        token:result[0].token
+                    }
+                    return resData
+                    // res.status(200).json({ message: 'logged in successfully', content: result3[0].token })
                 }
                 else {
                     res.status(200).json({ message: 'please enter proper credential', content: '' })
                 }
             })
+            .then(result2 => {
+                Project.find({ uid: result2.id })
+                    .exec()
+                    .then(result3 => {
+                        res.status(200).json({ message: 'logged in successfully',content:{jwtToken:result2.token,projects:result3 } })
+                    })
 
-
-            .catch(err => {
-                res.send(err)
+                    .catch(err => {
+                        console.log(err)
+                       res.status(200).json({ message: 'error', content: err })
+                    })
             })
     }
 
 }
-module.exports = new userServices()
+    module.exports = new userServices()

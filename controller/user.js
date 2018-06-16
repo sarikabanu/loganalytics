@@ -114,6 +114,7 @@ this.getConfig = function (req, res) {
                                                         resobj.hsi = result4[0].hsi
                                                         resobj.isEnabled = result4[0].isEnabled
                                                         resobj.uid = userRes[0]._id
+                                                        resobj.eApiPath = '/user/pushPackets'
                                                         res.status(200).json({ message: 'response data is', content: resobj })
 
                                                     })
@@ -130,6 +131,7 @@ this.getConfig = function (req, res) {
                                                 resobj.hsi = result4[0].hsi
                                                 resobj.isEnabled = result4[0].isEnabled
                                                 resobj.uid = userRes[0]._id
+                                                resobj.eApiPath = '/user/pushPackets'
                                                 res.status(200).json({ message: 'response data is', content: resobj })
 
                                             })
@@ -163,6 +165,7 @@ this.getConfig = function (req, res) {
                                                             resobj.hsi = result4[0].hsi
                                                             resobj.isEnabled = result4[0].isEnabled
                                                             resobj.uid = devRes
+                                                            resobj.eApiPath = '/user/pushPackets'
                                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                                         })
@@ -195,6 +198,7 @@ this.getConfig = function (req, res) {
                                             resobj.hsi = result4[0].hsi
                                             resobj.isEnabled = result4[0].isEnabled
                                             resobj.uid = result[0].uid
+                                            resobj.eApiPath = '/user/pushPackets'
                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                         })
@@ -228,6 +232,7 @@ this.getConfig = function (req, res) {
                             resobj.hsi = result4[0].hsi
                             resobj.isEnabled = result4[0].isEnabled
                             resobj.uid = result[0].uid
+                            resobj.eApiPath = '/user/pushPackets'
                             res.status(200).json({ message: 'response data is', content: resobj })
 
                         })
@@ -262,6 +267,7 @@ this.getConfig = function (req, res) {
                                             resobj.hsi = result4[0].hsi
                                             resobj.isEnabled = result4[0].isEnabled
                                             resobj.uid = result2
+                                            resobj.eApiPath = '/user/pushPackets'
                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                         })
