@@ -7,6 +7,7 @@ const Session = require('../models/session.js')
 const TokenGenerator = require('uuid-token-generator');
 
 
+
 this.pushPackets = function (req, res) {
     req.body.events.sort(function (x, y) {
         return y.t - x.t;
@@ -84,6 +85,8 @@ this.pushPackets = function (req, res) {
 
 
 this.getConfig = function (req, res) {
+    const tokgen = new TokenGenerator(); // Default is a 128-bit token encoded in base58
+    console.log(tokgen.generate())
     var resobj = new Object();
     if (req.body.uidentity && req.body.did) {                               //check for uidentity is empty from req
         User.find({ uidentity: req.body.uidentity })
@@ -105,7 +108,7 @@ this.getConfig = function (req, res) {
                                             .exec()
                                             .then(updateRes => {
                                                 console.log("updateRes" + JSON.stringify(updateRes))
-                                                Configr.find({ pid: req.body.pid })
+                                                Configr.find({ pid: req.body.pid,pf:req.body.pf})
                                                     .exec()
                                                     .then(result4 => {
                                                         resobj.pd = result4[0].pd
@@ -115,6 +118,7 @@ this.getConfig = function (req, res) {
                                                         resobj.isEnabled = result4[0].isEnabled
                                                         resobj.uid = userRes[0]._id
                                                         resobj.eApiPath = '/user/pushPackets'
+                                                        resobj.eApiToken =  tokgen.generate()
                                                         res.status(200).json({ message: 'response data is', content: resobj })
 
                                                     })
@@ -122,7 +126,7 @@ this.getConfig = function (req, res) {
 
                                     }
                                     else {
-                                        Configr.find({ pid: req.body.pid })
+                                        Configr.find({ pid: req.body.pid,pf:req.body.pf})
                                             .exec()
                                             .then(result4 => {
                                                 resobj.pd = result4[0].pd
@@ -132,6 +136,7 @@ this.getConfig = function (req, res) {
                                                 resobj.isEnabled = result4[0].isEnabled
                                                 resobj.uid = userRes[0]._id
                                                 resobj.eApiPath = '/user/pushPackets'
+                                                 resobj.eApiToken =  tokgen.generate()
                                                 res.status(200).json({ message: 'response data is', content: resobj })
 
                                             })
@@ -156,7 +161,7 @@ this.getConfig = function (req, res) {
                                             device.save()
                                                 .then(result => {
                                                     //return result._id
-                                                    Configr.find({ pid: req.body.pid })
+                                                    Configr.find({ pid: req.body.pid,pf:req.body.pf })
                                                         .exec()
                                                         .then(result4 => {
                                                             resobj.pd = result4[0].pd
@@ -166,6 +171,7 @@ this.getConfig = function (req, res) {
                                                             resobj.isEnabled = result4[0].isEnabled
                                                             resobj.uid = devRes
                                                             resobj.eApiPath = '/user/pushPackets'
+                                                             resobj.eApiToken =  tokgen.generate()
                                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                                         })
@@ -185,11 +191,11 @@ this.getConfig = function (req, res) {
                         .exec()
                         .then(result => {
                             setuid = "identity not exixists"
-                            User.update({ _id: result[0].uid }, { $set: { uidentity: req.body.uidentity } })
+                            User.update({_id: result[0].uid }, { $set: { uidentity: req.body.uidentity } })
                                 .exec()
                                 .then(updateRes => {
                                     console.log("updateRes" + JSON.stringify(updateRes))
-                                    Configr.find({ pid: req.body.pid })
+                                    Configr.find({ pid: req.body.pid,pf:req.body.pf})
                                         .exec()
                                         .then(result4 => {
                                             resobj.pd = result4[0].pd
@@ -199,6 +205,7 @@ this.getConfig = function (req, res) {
                                             resobj.isEnabled = result4[0].isEnabled
                                             resobj.uid = result[0].uid
                                             resobj.eApiPath = '/user/pushPackets'
+                                             resobj.eApiToken =  tokgen.generate()
                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                         })
@@ -223,7 +230,7 @@ this.getConfig = function (req, res) {
             .exec()
             .then(result => {
                 if (result.length != 0) {               //if device present in db
-                    Configr.find({ pid: req.body.pid })
+                    Configr.find({ pid: req.body.pid,pf:req.body.pf })
                         .exec()
                         .then(result4 => {
                             resobj.pd = result4[0].pd
@@ -233,6 +240,7 @@ this.getConfig = function (req, res) {
                             resobj.isEnabled = result4[0].isEnabled
                             resobj.uid = result[0].uid
                             resobj.eApiPath = '/user/pushPackets'
+                             resobj.eApiToken =  tokgen.generate()
                             res.status(200).json({ message: 'response data is', content: resobj })
 
                         })
@@ -258,7 +266,7 @@ this.getConfig = function (req, res) {
                             const device = new Device(item);
                             device.save()
                                 .then(result => {
-                                    Configr.find({ pid: req.body.pid })
+                                    Configr.find({ pid: req.body.pid,pf:req.body.pf })
                                         .exec()
                                         .then(result4 => {
                                             resobj.pd = result4[0].pd
@@ -268,6 +276,7 @@ this.getConfig = function (req, res) {
                                             resobj.isEnabled = result4[0].isEnabled
                                             resobj.uid = result2
                                             resobj.eApiPath = '/user/pushPackets'
+                                             resobj.eApiToken =  tokgen.generate()
                                             res.status(200).json({ message: 'response data is', content: resobj })
 
                                         })

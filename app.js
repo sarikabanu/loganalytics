@@ -25,7 +25,8 @@ let db = mongoose.connection;
 
 
 
-db.on('error', function () {
+db.on('error', function (err) {
+    console.log(err)
     console.log('error', 'Connection to db failed!');
     process.exit(0);
 });

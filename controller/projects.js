@@ -8,7 +8,6 @@ const Configr = require('../models/configuration.js')
 
 this.createProject = function (req, res) {
     const tokgen = new TokenGenerator(); // Default is a 128-bit token encoded in base58
-    console.log(tokgen.generate())
     var item = {
         name: req.body.name,
         projectToken: tokgen.generate(),
@@ -27,7 +26,11 @@ this.createProject = function (req, res) {
             pEnum.enums.forEach(function (enumItem) {
                 var item = {
                     pid: result2,
-                    pf: enumItem.key
+                    pf: enumItem.key,
+                    mpuc: 45,
+                    hsi: 56,
+                    canCapture: 0,
+                    isEnabled: 1
                 }
                 const config = new Configr(item);
                 config.save()
